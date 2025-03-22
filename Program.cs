@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using BowlingLeague.Models;  // Referencing my models 
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
