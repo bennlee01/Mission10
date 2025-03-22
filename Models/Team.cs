@@ -1,20 +1,18 @@
-using System.ComponentModel.DataAnnotations;  // Required for data annotations like [Key]
+using System;
 
-// Namespace containing the Team model
-namespace BowlingLeagueAPI.Models
+namespace BowlingLeague.Models
 {
-    // The Team class represents a team in the bowling league
+    // Represents a bowling team in the league
     public class Team
     {
-        // Primary key for the Team table in the database
-        [Key]
+        // Unique identifier for each team
         public int TeamID { get; set; }
 
-        // Name of the team, must be provided, defaults to an empty string if not set
-        public string TeamName { get; set; } = string.Empty;
+        // Name of the team (e.g., Marlins, Sharks)
+        public string TeamName { get; set; }
 
-        // A collection of Bowlers associated with this Team
-        // The '?' indicates that the collection may be null (nullable)
-        public ICollection<Bowler>? Bowlers { get; set; }
+        // Navigation property to access all bowlers in this team
+        // This allows us to easily retrieve the list of bowlers who belong to this team
+        public ICollection<Bowler> Bowlers { get; set; }
     }
 }
