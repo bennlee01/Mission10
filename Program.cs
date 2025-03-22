@@ -1,45 +1,53 @@
-using Microsoft.EntityFrameworkCore;  // Namespace for EF Core
-using Microsoft.OpenApi.Models;     // Namespace for Swagger configuration
-using BowlingLeagueAPI.Models;      // Namespace for your Models (e.g., BowlingLeagueContext)
+using Microsoft.EntityFrameworkCore;
 
-// Set up the WebApplication builder for your ASP.NET application
 var builder = WebApplication.CreateBuilder(args);
 
-// Add database context (connects to SQLite database using the connection string "BowlingLeague")
-builder.Services.AddDbContext<BowlingLeagueContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("BowlingLeague"))); // Configures EF to use SQLite
+// Add services to the container.
 
-// Add services required for controllers (API endpoints)
-builder.Services.AddControllers(); // Enables MVC-style controller-based routing
-
-// Add support for API documentation via Swagger
-builder.Services.AddEndpointsApiExplorer(); // Used for discovering API endpoints
-builder.Services.AddSwaggerGen(c =>
+// Enable CORS to allow the React frontend to make requests to the backend
+builder.Services.AddCors(options =>
 {
-    // Configure Swagger with title and version information
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BowlingLeague API", Version = "v1" });
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()  // Allow any origin (frontend on a different port)
+            .AllowAnyMethod()    // Allow any HTTP method (GET, POST, etc.)
+            .AllowAnyHeader();   // Allow any headers
+    });
 });
 
-// Build the application with the configured services
+// Set up SQLite database connection using DbContext
+builder.Services.AddDbContext<BowlingContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add support for API controllers (to handle requests)
+builder.Services.AddControllers();
+
+// Add Swagger for API documentation (useful for testing API in development)
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-// Middleware configuration
+// Set up middleware for the app.
 
-// Enable Swagger and Swagger UI only in the development environment (helpful for debugging)
+// If in development, enable Swagger UI for API documentation
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger(); // Enables the Swagger endpoint for API documentation
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BowlingLeague API v1")); // Swagger UI for easier testing of the API
+    app.UseSwagger(); // Generate API docs
+    app.UseSwaggerUI(); // Display the docs in the browser
 }
 
-// Enable HTTPS redirection for secure connections
+// Enable CORS so frontend can access the backend API
+app.UseCors("AllowAll");
+
+// Ensure HTTP requests are redirected to HTTPS
 app.UseHttpsRedirection();
 
-// Enable Authorization middleware (used for securing endpoints, can be further configured)
+// Set up authorization middleware (ensures only authorized users access certain routes)
 app.UseAuthorization();
 
-// Map controller routes for incoming API requests
+// Map controller routes to the API
 app.MapControllers();
 
-// Run the application
+// Run the app (start listening for incoming requests)
 app.Run();
