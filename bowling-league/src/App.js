@@ -1,20 +1,16 @@
-// Import the required styles and components
-import './App.css';  // Import the CSS file for styling
-import Header from "./components/Header";  // Import the Header component
-import BowlerTable from "./components/BowlerTable";  // Import the BowlerTable component
+import React from 'react';  // Import React
+import './App.css';  // Import custom styles
+import Heading from './components/Heading';  // Import Heading component
+import BowlerTable from './components/BowlerTable';  // Import BowlerTable component
+import 'bootstrap/dist/css/bootstrap.min.css';  // Import Bootstrap styles
 
-// The main App component that renders the Header and BowlerTable
 function App() {
-    return (
-        <div>
-            {/* Render the Header component */}
-            <Header />
-
-            {/* Render the BowlerTable component */}
-            <BowlerTable />
-        </div>
-    );
+  return (
+      <div className="App">  {/* Main wrapper div */}
+        <Heading />  {/* Render the Heading component */}
+        <BowlerTable />  {/* Render the BowlerTable component */}
+      </div>
+  );
 }
 
-// Export the App component to be used in the index.js file
-export default App;
+export default App;  // Export App component to be used elsewhere
