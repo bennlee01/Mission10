@@ -1,43 +1,41 @@
-using System.ComponentModel.DataAnnotations;     // Required for data annotations like [Key]
-using System.ComponentModel.DataAnnotations.Schema;  // Required for specifying database schema details
+using System;
 
-namespace BowlingLeagueAPI.Models
+namespace BowlingLeague.Models
 {
-    // The Bowler class represents an individual bowler in the bowling league
+    // Represents a bowler in the bowling league
     public class Bowler
     {
-        // Primary key for the Bowler table in the database
-        [Key]
+        // Unique identifier for each bowler
         public int BowlerID { get; set; }
 
-        // Bowler's first name, defaults to an empty string if not provided
-        public string? BowlerFirstName { get; set; } = string.Empty;
+        // First name of the bowler (nullable in case it’s not provided)
+        public string? BowlerFirstName { get; set; }
 
-        // Bowler's middle initial, defaults to an empty string if not provided
-        public string? BowlerMiddleInit { get; set; } = string.Empty;
+        // Middle initial of the bowler (nullable in case it’s not provided)
+        public string? BowlerMiddleInit { get; set; }  
 
-        // Bowler's last name, defaults to an empty string if not provided
-        public string? BowlerLastName { get; set; } = string.Empty;
+        // Last name of the bowler (nullable in case it’s not provided)
+        public string? BowlerLastName { get; set; }   
 
-        // Bowler's home address, defaults to an empty string if not provided
-        public string? BowlerAddress { get; set; } = string.Empty;
+        // Address of the bowler (nullable in case it’s not provided)
+        public string? BowlerAddress { get; set; }    
 
-        // Bowler's city, defaults to an empty string if not provided
-        public string? BowlerCity { get; set; } = string.Empty;
+        // City where the bowler resides (nullable in case it’s not provided)
+        public string? BowlerCity { get; set; }       
 
-        // Bowler's state, defaults to an empty string if not provided
-        public string? BowlerState { get; set; } = string.Empty;
+        // State where the bowler resides (nullable in case it’s not provided)
+        public string? BowlerState { get; set; }      
 
-        // Bowler's zip code, defaults to an empty string if not provided
-        public string? BowlerZip { get; set; } = string.Empty;
+        // Zip code of the bowler’s address (nullable in case it’s not provided)
+        public string? BowlerZip { get; set; }        
 
-        // Bowler's phone number, defaults to an empty string if not provided
-        public string? BowlerPhoneNumber { get; set; } = string.Empty;
+        // Phone number of the bowler (nullable in case it’s not provided)
+        public string? BowlerPhoneNumber { get; set; } 
 
-        // Foreign key to associate the Bowler with a Team
+        // The ID of the team the bowler is associated with (this is a foreign key)
         public int TeamID { get; set; }
 
-        // Navigation property to the associated Team. Nullable because a Bowler might not be assigned to a team
-        public Team? Team { get; set; }
+        // Navigation property to access the team the bowler belongs to
+        public Team Team { get; set; }
     }
 }
