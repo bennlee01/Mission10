@@ -8,7 +8,7 @@ const BowlerTable = () => {
 
     // useEffect hook to fetch the bowlers data from the API when the component mounts
     useEffect(() => {
-        axios.get('http://localhost:5185/api/bowlers')  // Correct API URL
+        axios.get('http://localhost:5184/api/bowlers')  // Correct API URL
             .then(response => {
                 // Set the fetched data to the bowlers state
                 setBowlers(response.data);  // Assuming the API returns an array of bowler objects
