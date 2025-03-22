@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
 
 // Set up SQLite database connection using DbContext
 builder.Services.AddDbContext<BowlingContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("BowlingLeague")));
 
 // Add support for API controllers (to handle requests)
 builder.Services.AddControllers();
