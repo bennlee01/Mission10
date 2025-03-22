@@ -7,11 +7,11 @@
     "/Users/benjaminlee/BowlingLeagueAPI/BowlingLeagueAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/benjaminlee/BowlingLeagueAPI/BowlingLeagueAPI.csproj",
-        "projectName": "BowlingLeagueAPI",
-        "projectPath": "/Users/benjaminlee/BowlingLeagueAPI/BowlingLeagueAPI.csproj",
+        "projectUniqueName": "/Users/benjaminlee/BowlingLeague/BowlingLeague.csproj",
+        "projectName": "BowlingLeague",
+        "projectPath": "/Users/benjaminlee/BowlingLeague/BowlingLeague.csproj",
         "packagesPath": "/Users/benjaminlee/.nuget/packages/",
-        "outputPath": "/Users/benjaminlee/BowlingLeagueAPI/obj/",
+        "outputPath": "/Users/benjaminlee/BowlingLeague/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/benjaminlee/.nuget/NuGet/NuGet.Config"
